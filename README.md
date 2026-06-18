@@ -48,7 +48,43 @@ This project is being built to learn:
 * Logging concepts
 * Cybersecurity fundamentals
 * Git and GitHub workflows
+=======
+Smart System Monitor is a Python-based project designed to help me understand how computer systems behave under different workloads while building practical skills in Python, operating systems, cybersecurity, logging, and system monitoring.
 
+The project begins with basic resource monitoring and gradually evolves into a system capable of generating logs, analyzing events, detecting suspicious activity, and visualizing system behavior.
+
+---
+
+## Purpose
+
+The primary purpose of this project is to learn:
+
+* How operating systems expose system metrics
+* How monitoring tools collect performance data
+* How logs are generated and analyzed
+* How abnormal system behavior can be detected
+* How cybersecurity monitoring systems work
+
+This project serves as a bridge between programming, operating systems, and cybersecurity.
+
+---
+
+## What This Project Tracks
+
+### Current Metrics
+
+* CPU Usage
+* Memory Usage
+* Disk Usage
+* Network Activity
+
+### Future Metrics
+
+* Process Activity
+* Failed Login Attempts
+* Error Events
+* Suspicious IP Addresses
+* Resource Usage Trends
 ---
 
 ## System Baseline (Phase 1)
@@ -100,3 +136,69 @@ smart_system_monitor/
 🚧 Work in Progress
 
 Current milestone: Building the log parsing module.
+=======
+The purpose of establishing a baseline is to understand what "normal" looks like on my machine before attempting anomaly detection.
+
+| Metric                      | Typical Observation |
+| --------------------------- | ------------------- |
+| CPU Usage (Idle)            | ~30%                |
+| CPU Usage (Coding/Browsing) | ~50-60%             |
+| Memory Usage                | ~40-50%             |
+| Disk Usage Changes          | Slow and gradual    |
+| Network Activity            | Moderate            |
+
+Future versions of the project will compare live metrics against these baseline values to identify unusual behavior.
+
+---
+
+## Project Timeline
+
+### Phase 1: Foundations
+
+* Read and analyze log files
+* Count log levels (INFO, WARNING, ERROR)
+* Monitor CPU usage
+* Establish system baseline
+
+### Phase 2: Log Parsing
+
+* Extract timestamps
+* Extract log levels
+* Parse messages
+* Generate structured log reports
+
+### Phase 3: Pattern Detection
+
+* Extract IP addresses
+* Use regular expressions
+* Identify recurring errors
+* Generate statistics
+
+### Phase 4: Security Monitoring
+
+* Detect repeated failed logins
+* Flag suspicious IP activity
+* Generate alerts
+
+### Phase 5: Advanced Features
+
+* Command Line Interface (CLI)
+* Real-time monitoring
+* Dashboards and visualizations
+* Historical analysis
+
+---
+
+## Current Status
+
+🚧 In Development
+
+Completed:
+
+* Project setup
+* Git initialization
+* Basic log level analysis
+
+Currently Working On:
+
+* Log parsing and structured log analysis
