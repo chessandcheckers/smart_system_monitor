@@ -3,6 +3,7 @@ import time
 
 counts = {}
 total_logs = 0
+logs= []
 
 with open("logs/sample.log", "r") as f:  
     for line in f:
@@ -20,14 +21,17 @@ with open("logs/sample.log", "r") as f:
         level = parts[2]
         message = " ".join(parts[3:])
 
-        print(f"Date: {date}")
-        print(f"Time: {time}")
-        print(f"Level: {level}")
-        print(f"Message: {message}")
-        print()      
+        log_entry = {
+            "Date": date,
+            "Time": time,
+            "Level": level,
+            "Message": message } 
 
+        logs.append(log_entry)
 
         total_logs += 1
+
+print(logs)
 
 print("==========LOG REPORT==========")
 print(f"Total Logs: {total_logs}")
