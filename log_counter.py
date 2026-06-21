@@ -31,7 +31,12 @@ with open("logs/sample.log", "r") as f:
 
         total_logs += 1
 
-print(logs)
+for log in logs:
+    print("-----------------------")
+    print(f"Date: {log['Date']}")
+    print(f"Time: {log['Time']}")
+    print(f"Level: {log['Level']}")
+    print(f"Message: {log['Message']}")
 
 print("==========LOG REPORT==========")
 print(f"Total Logs: {total_logs}")
