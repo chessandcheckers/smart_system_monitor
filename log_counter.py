@@ -1,9 +1,7 @@
-import psutil
-import time
-
 counts = {}
 total_logs = 0
 logs= []
+error_msgs = {}
 
 with open("logs/sample.log", "r") as f:  
     for line in f:
@@ -26,6 +24,9 @@ with open("logs/sample.log", "r") as f:
             "Time": time,
             "Level": level,
             "Message": message } 
+        
+        if level == "ERROR":
+            error_msgs[message] = error_msgs.get(message, 0) + 1 
 
         logs.append(log_entry)
 
@@ -37,6 +38,14 @@ for log in logs:
     print(f"Time: {log['Time']}")
     print(f"Level: {log['Level']}")
     print(f"Message: {log['Message']}")
+
+print("\n")
+print("========ERROR ANALYSIS========")
+for error, count in error_msgs.items():
+    print(f"{error}: {count}")
+print("==============================")
+
+print("\n")
 
 print("==========LOG REPORT==========")
 print(f"Total Logs: {total_logs}")
