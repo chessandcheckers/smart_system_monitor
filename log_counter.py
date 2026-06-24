@@ -1,55 +1,48 @@
 counts = {}
-total_logs = 0
 logs= []
 error_msgs = {}
 
 with open("logs/sample.log", "r") as f:  
     for line in f:
 
-        if "ERROR" in line:
-            counts["ERROR"] = counts.get("ERROR", 0) + 1
-        if "INFO" in line:
-            counts["INFO"] = counts.get("INFO", 0) + 1
-        if "WARNING" in line:
-            counts["WARNING"] = counts.get("WARNING", 0) + 1
-
+        # 1 Parse the line
         parts = line.split()
         date = parts[0] 
         time = parts[1]
         level = parts[2]
         message = " ".join(parts[3:])
 
+        # 2 Store structured log    
         log_entry = {
             "Date": date,
             "Time": time,
             "Level": level,
-            "Message": message } 
-        
-        if level == "ERROR":
-            error_msgs[message] = error_msgs.get(message, 0) + 1 
-
+            "Message": message 
+        } 
         logs.append(log_entry)
 
-        total_logs += 1
+        # 3 Count log levels, no repeated checks
+        counts[level] = counts.get(level, 0) + 1
 
+        # 4 Error-Specific analysis
+        if level == "ERROR":
+            error_msgs[message] = error_msgs.get(message, 0) + 1
+
+
+#OUTPUTS
+
+print("\n============ ALL LOGS==========\n")
 for log in logs:
-    print("-----------------------")
-    print(f"Date: {log['Date']}")
-    print(f"Time: {log['Time']}")
-    print(f"Level: {log['Level']}")
-    print(f"Message: {log['Message']}")
+    print(f"{log['Date']} {log['Time']} [{log['Level']}]")
+    print(f"{log['Message']}")
+    print("-" * 30)
 
-print("\n")
-print("========ERROR ANALYSIS========")
+print("\n======== ERROR ANALYSIS ========\n")
+
 for error, count in error_msgs.items():
     print(f"{error}: {count}")
-print("==============================")
 
-print("\n")
-
-print("==========LOG REPORT==========")
-print(f"Total Logs: {total_logs}")
+print("========== LOG LEVEL SUMMARY ==========\n")
 
 for level, count in counts.items():
     print(f"{level}: {count}")
-print("==============================")
