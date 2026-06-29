@@ -1,6 +1,7 @@
 counts = {}
 logs= []
 error_msgs = {}
+keyword = "Database"
 
 with open("logs/sample.log", "r") as f:  
     for line in f:
@@ -31,7 +32,14 @@ with open("logs/sample.log", "r") as f:
 
 #OUTPUTS
 
-print("\n============ ALL LOGS==========\n")
+print("\n============ SEARCH LOG ==========\n")
+for log in logs:
+    if keyword in log['Message']:
+        print(f"{log['Date']} {log['Time']} [{log['Level']}]")
+        print(f"{log['Message']}")
+        print()
+
+print("\n============ ALL LOGS ==========\n")
 for log in logs:
     print(f"{log['Date']} {log['Time']} [{log['Level']}]")
     print(f"{log['Message']}")
