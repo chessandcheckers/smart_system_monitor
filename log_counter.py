@@ -3,6 +3,7 @@ logs= []
 error_msgs = {}
 keyword = "Database"
 wanted_level = "ERROR"
+wanted_date = "2026-07-25"
 
 with open("logs/sample.log", "r") as f:  
     for line in f:
@@ -37,6 +38,13 @@ for log in logs:
     print(f"{log['Date']} {log['Time']} [{log['Level']}]")
     print(f"{log['Message']}")
     print("-" * 30)
+
+print("\n============ FILTER BY DATE ==========\n")
+for log in logs:
+    if wanted_date == log['Date']:
+        print(f"{log['Date']} {log['Time']} [{log['Level']}]")
+        print(f"{log['Message']}")
+        print()
 
 print("\n============ FILTER BY LEVEL ==========\n")
 for log in logs:
