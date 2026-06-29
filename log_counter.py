@@ -2,6 +2,7 @@ counts = {}
 logs= []
 error_msgs = {}
 keyword = "Database"
+wanted_level = "ERROR"
 
 with open("logs/sample.log", "r") as f:  
     for line in f:
@@ -30,20 +31,26 @@ with open("logs/sample.log", "r") as f:
             error_msgs[message] = error_msgs.get(message, 0) + 1
 
 
-#OUTPUTS
-
-print("\n============ SEARCH LOG ==========\n")
-for log in logs:
-    if keyword in log['Message']:
-        print(f"{log['Date']} {log['Time']} [{log['Level']}]")
-        print(f"{log['Message']}")
-        print()
-
+#OUTPUT
 print("\n============ ALL LOGS ==========\n")
 for log in logs:
     print(f"{log['Date']} {log['Time']} [{log['Level']}]")
     print(f"{log['Message']}")
     print("-" * 30)
+
+print("\n============ FILTER BY LEVEL ==========\n")
+for log in logs:
+    if wanted_level == log['Level']:
+        print(f"{log['Date']} {log['Time']} [{log['Level']}]")
+        print(f"{log['Message']}")
+        print()
+
+print("\n============ SEARCH BY KEYWORD ==========\n")
+for log in logs:
+    if keyword in log['Message']:
+        print(f"{log['Date']} {log['Time']} [{log['Level']}]")
+        print(f"{log['Message']}")
+        print()
 
 print("\n======== ERROR ANALYSIS ========\n")
 
