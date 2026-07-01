@@ -1,3 +1,8 @@
+def print_log(log):
+    print(f"{log['Date']} {log['Time']} [{log['Level']}]")
+    print(f"{log['Message']}")
+    print()
+
 counts = {}
 logs= []
 error_msgs = {}
@@ -33,39 +38,22 @@ with open("logs/sample.log", "r") as f:
 
 
 #OUTPUT
-print("\n============ ALL LOGS ==========\n")
-for log in logs:
-    print(f"{log['Date']} {log['Time']} [{log['Level']}]")
-    print(f"{log['Message']}")
-    print("-" * 30)
+print("========== LOG LEVEL SUMMARY ==========\n")
 
-print("\n============ FILTER BY DATE ==========\n")
-for log in logs:
-    if wanted_date == log['Date']:
-        print(f"{log['Date']} {log['Time']} [{log['Level']}]")
-        print(f"{log['Message']}")
-        print()
-
-print("\n============ FILTER BY LEVEL ==========\n")
-for log in logs:
-    if wanted_level == log['Level']:
-        print(f"{log['Date']} {log['Time']} [{log['Level']}]")
-        print(f"{log['Message']}")
-        print()
-
-print("\n============ SEARCH BY KEYWORD ==========\n")
-for log in logs:
-    if keyword in log['Message']:
-        print(f"{log['Date']} {log['Time']} [{log['Level']}]")
-        print(f"{log['Message']}")
-        print()
+for level, count in counts.items():
+    print(f"{level}: {count}")
 
 print("\n======== ERROR ANALYSIS ========\n")
 
 for error, count in error_msgs.items():
     print(f"{error}: {count}")
 
-print("========== LOG LEVEL SUMMARY ==========\n")
+print("\n============ SPECIFIC LOGS ==========\n")
+for log in logs:
+    if keyword in log['Message'] and log['Date'] == wanted_date and log['Level'] == wanted_level:
+        print_log(log)
 
-for level, count in counts.items():
-    print(f"{level}: {count}")
+print("\n============ ALL LOGS ==========\n")
+for log in logs:
+    print_log(log)
+    print("-" * 30)
