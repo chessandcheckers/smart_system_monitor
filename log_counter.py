@@ -3,6 +3,19 @@ def print_log(log):
     print(f"{log['Message']}")
     print()
 
+def show_logs(logs):
+    for log in logs:
+        print_log(log)
+        print("-" * 30)
+
+def show_summary(counts):
+    for level, count in counts.items():
+        print(f"{level}: {count}")
+
+def show_error_analysis(error_msgs):
+    for error, count in error_msgs.items():
+        print(f"{error}: {count}")
+
 counts = {}
 logs= []
 error_msgs = {}
@@ -39,14 +52,10 @@ with open("logs/sample.log", "r") as f:
 
 #OUTPUT
 print("========== LOG LEVEL SUMMARY ==========\n")
-
-for level, count in counts.items():
-    print(f"{level}: {count}")
+show_summary(counts)
 
 print("\n======== ERROR ANALYSIS ========\n")
-
-for error, count in error_msgs.items():
-    print(f"{error}: {count}")
+show_error_analysis(error_msgs)
 
 print("\n============ SPECIFIC LOGS ==========\n")
 for log in logs:
@@ -54,6 +63,4 @@ for log in logs:
         print_log(log)
 
 print("\n============ ALL LOGS ==========\n")
-for log in logs:
-    print_log(log)
-    print("-" * 30)
+show_logs(logs)
