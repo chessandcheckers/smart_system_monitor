@@ -8,15 +8,20 @@ def show_logs(logs):
         print_log(log)
         print("-" * 30)
 
-def show_summary(counts):
-    for level, count in counts.items():
+def show_summary(level_counts):
+    for level, count in level_counts.items():
         print(f"{level}: {count}")
 
 def show_error_analysis(error_msgs):
     for error, count in error_msgs.items():
         print(f"{error}: {count}")
 
-counts = {}
+def show_logs_per_day(date_counts):
+    for date, count in date_counts.items():
+        print(f"{date}: {count}")
+
+date_counts = {}
+level_counts = {}
 logs= []
 error_msgs = {}
 keyword = "Database"
@@ -43,16 +48,20 @@ with open("logs/sample.log", "r") as f:
         logs.append(log_entry)
 
         # 3 Count log levels, no repeated checks
-        counts[level] = counts.get(level, 0) + 1
+        level_counts[level] = level_counts.get(level, 0) + 1
 
         # 4 Error-Specific analysis
         if level == "ERROR":
             error_msgs[message] = error_msgs.get(message, 0) + 1
 
+        # 5 count log dates
+        date_counts[date] = date_counts.get(date, 0) + 1
+
+
 
 #OUTPUT
 print("========== LOG LEVEL SUMMARY ==========\n")
-show_summary(counts)
+show_summary(level_counts)
 
 print("\n======== ERROR ANALYSIS ========\n")
 show_error_analysis(error_msgs)
@@ -61,6 +70,9 @@ print("\n============ SPECIFIC LOGS ==========\n")
 for log in logs:
     if keyword in log['Message'] and log['Date'] == wanted_date and log['Level'] == wanted_level:
         print_log(log)
+
+print("========== LOGS PER DAY ==========\n")
+show_logs_per_day(date_counts)
 
 print("\n============ ALL LOGS ==========\n")
 show_logs(logs)
