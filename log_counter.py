@@ -63,8 +63,17 @@ with open("logs/sample.log", "r") as f:
 print("========== LOG LEVEL SUMMARY ==========\n")
 show_summary(level_counts)
 
+print("========== FIRST AND LAST LOG ==========\n")
+print_log(logs[0])
+print_log(logs[-1])
+
 print("\n======== ERROR ANALYSIS ========\n")
 show_error_analysis(error_msgs)
+
+print("========== MOST OCCURRING ERROR ==========\n")
+for error, count in error_msgs.items():
+        max_count = max(error_msgs, key=max_count.get) 
+        print(f"{error}: {max_count}") #i dont understand how to print the number. help :/
 
 print("\n============ SPECIFIC LOGS ==========\n")
 for log in logs:
